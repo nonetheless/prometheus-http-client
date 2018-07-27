@@ -17,7 +17,7 @@ def requirements(fname):
     return install_requires
 
 setup(
-    name='prometheus-client',
+    name='prometheus-http-client',
     version='0.1.0',
     description='Common prometheus client for python3',
     long_description=long_description,

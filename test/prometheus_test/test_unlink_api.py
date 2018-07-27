@@ -29,5 +29,5 @@ class TestAlertManagers(unittest.TestCase):
         self.assertTrue(True)
 
     def test_query(self):
-        query = QueryResult.execute(self.prometheus,"kubelet:namespace:mem:used{namespace=\"v8n7m9y\"}", None)
+        query = QueryResult.execute(self.prometheus,"kubelet:pod:cpu:used{namespace=\"v8n7m9y\"}", None)
         self.assertTrue(True)

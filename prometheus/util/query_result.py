@@ -10,17 +10,28 @@ class QueryResult(object):
         typenode = self.json.get("resultType")
         return typenode
 
-    def asMatrix(self):
+    def as_matrix(self):
         return [SampleStream(i) for i in self.json]
 
-    def asVector(self):
+    def as_vector(self):
         return [Sample(i) for i in self.json]
 
-    def asScalar(self):
+    def as_scalar(self):
         return Scalar(self.json)
 
-    def asPString(self):
+    def as_pstring(self):
         return PString(self.json)
+
+    def as_dict(self, keyword):
+        rsp = dict()
+        [rsp.update(self._get_dict(i, keyword)) for i in self.json]
+        return rsp
+
+    def _get_dict(self, params, keyword):
+        metric = params.get('metric')
+        dict_key = metric.get(keyword)
+        value = params.get('value')
+        return {str(dict_key): value}
 
     @classmethod
     def execute(cls, prometheus, query, ts):
